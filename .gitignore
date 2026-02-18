@@ -1,0 +1,13 @@
+# API Keys - NEVER commit these
+assets/js/config.js
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Node modules (if using npm)
+node_modules/

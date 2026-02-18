@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wanderlust Travel - Discover your perfect holiday
+    destination with interactive maps and country guides.">
+  <title>Wanderlust Travel | Find Your Perfect Destination</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800
+    &family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS for maps -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+
+  <!-- Our custom CSS (linked in head - criterion 2.5) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Skip to content link for screen readers (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo" aria-label="Wanderlust Travel home">
+          <span class="logo-icon">&#x2708;</span>
+          <span>Wanderlust</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn"
+          aria-label="Toggle navigation menu" aria-expanded="false">
+          &#9776;
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- Hero Section with Search -->
+    <section class="hero" aria-label="Search for destinations">
+      <div class="hero-content">
+        <span class="hero-badge">&#127758; Explore 195+ Countries</span>
+        <h1>Find Your Perfect<br><span>Holiday Destination</span></h1>
+        <p class="hero-sub">Search any country to discover destinations, explore
+          interactive maps, and plan your dream getaway.</p>
+
+        <form id="search-form" class="search-box" role="search">
+          <input type="text" id="search-input"
+            placeholder="Search a country (e.g. Japan, Italy, Brazil...)"
+            aria-label="Enter destination name" autocomplete="off">
+          <button type="submit" class="search-btn">Search &#x2192;</button>
+        </form>
+
+        <div id="search-feedback" class="feedback"
+          role="alert" aria-live="polite"></div>
+        <div id="search-spinner" class="spinner"
+          role="status" aria-label="Loading"></div>
+      </div>
+    </section>
+
+    <!-- Search Results (hidden until search) -->
+    <section id="results-section" class="results-section"
+      style="display:none;" aria-label="Search results">
+      <h2 class="section-title" id="results-title">Search Results</h2>
+      <p class="section-sub" id="results-count"></p>
+      <div id="map-container" class="map-container">
+        <div id="map"></div>
+      </div>
+      <div id="results-grid" class="cards-grid"></div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section class="featured-section" aria-label="Popular destinations">
+      <h2 class="section-title">Popular Destinations</h2>
+      <p class="section-sub">Click any destination to learn more</p>
+      <div id="featured-grid" class="cards-grid"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" aria-label="About Wanderlust">
+      <div class="about-inner">
+        <h2 class="section-title">Why Wanderlust?</h2>
+        <p class="section-sub">Everything you need to plan your perfect trip.</p>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-icon">&#127757;</div>
+            <h3>195+ Countries</h3>
+            <p>Explore destinations worldwide with real-time data.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">&#128205;</div>
+            <h3>Interactive Maps</h3>
+            <p>View every destination on a zoomable interactive map.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">&#128176;</div>
+            <h3>Currency Info</h3>
+            <p>Know the local currency before you travel.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">&#9993;</div>
+            <h3>Get In Touch</h3>
+            <p>Contact our travel experts for personalised packages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://github.com/timothyosaigbovo/wanderlust-travel"
+          target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Wanderlust Travel. Built for
+        Code Institute MS2.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-top" id="back-top-btn"
+    aria-label="Back to top">&#x2191;</button>
+
+  <!-- JavaScript at BOTTOM of body (criterion 2.5) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js">
+  </script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
