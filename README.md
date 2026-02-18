@@ -87,9 +87,10 @@ The primary goal of Wanderlust Travel is to provide an engaging, easy-to-use too
 | 10 | Validated contact form | Client-side validation for name (2+ chars), email (format check), message (10+ chars) | ![validation](docs/testing/contact-form-validation.png) |
 | 11 | Accessible to all | Skip-to-content link, ARIA labels, semantic HTML, keyboard navigable, 94-96 accessibility scores | ![accessibility](docs/testing/lh-index-desktop.png) |
 
+
 ### Wireframes
 
-Wireframes were created for mobile, tablet, and desktop layouts using Balsamiq.
+Wireframes were created for mobile, tablet, and desktop layouts to plan the structure and responsive behaviour of each page before development began.
 
 | Page | Mobile | Tablet | Desktop |
 |------|--------|--------|---------|
@@ -97,7 +98,15 @@ Wireframes were created for mobile, tablet, and desktop layouts using Balsamiq.
 | Destinations | ![dest mobile](docs/wireframes/dest-mobile.png) | ![dest tablet](docs/wireframes/dest-tablet.png) | ![dest desktop](docs/wireframes/dest-desktop.png) |
 | Contact | ![contact mobile](docs/wireframes/contact-mobile.png) | ![contact tablet](docs/wireframes/contact-tablet.png) | ![contact desktop](docs/wireframes/contact-desktop.png) |
 
+### Wireframes
+
+Wireframes were created for ...
+
+| Page | Mobile | Tablet | Desktop |
+...
+
 ### Design Choices
+
 
 #### Colour Scheme
 
@@ -315,4 +324,3 @@ This project was deployed to GitHub Pages using the following steps:
 ---
 
 *This project was created for educational purposes as part of the Code Institute Level 5 Diploma in Web Application Development.*
-
