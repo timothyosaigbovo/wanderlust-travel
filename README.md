@@ -107,6 +107,8 @@ Wireframes were created for ...
 
 ### Design Choices
 
+The colour scheme was checked for WCAG AA contrast compliance to ensure readability for all users.
+
 
 #### Colour Scheme
 
@@ -139,7 +141,6 @@ Two Google Fonts were chosen for clear readability and modern aesthetics:
 - **Loading spinners and feedback messages** keep users informed during API calls, reducing perceived wait time
 - **Consistent navigation** across all pages reduces cognitive load and helps users find information quickly
 
----
 
 ## Features
 
