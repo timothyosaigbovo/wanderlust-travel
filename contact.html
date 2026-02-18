@@ -37,26 +37,25 @@
       <p>Have questions about a destination or want a personalised travel package?</p>
     </section>
 
-    <section class="contact-section">
+    <div class="contact-section">
       <form id="contact-form" class="contact-form" novalidate>
         <div class="form-group">
           <label for="contact-name">Full Name *</label>
           <input type="text" id="contact-name" name="name" required
-            aria-required="true" placeholder="Your full name">
+            placeholder="Your full name">
           <span class="field-error" id="name-error">
             Please enter your name (at least 2 characters).</span>
         </div>
         <div class="form-group">
           <label for="contact-email">Email Address *</label>
           <input type="email" id="contact-email" name="email" required
-            aria-required="true" placeholder="your@email.com">
+            placeholder="your@email.com">
           <span class="field-error" id="email-error">
             Please enter a valid email address.</span>
         </div>
         <div class="form-group">
           <label for="contact-message">Your Message *</label>
           <textarea id="contact-message" name="message" required
-            aria-required="true"
             placeholder="Tell us about your dream holiday..."></textarea>
           <span class="field-error" id="message-error">
             Please enter a message (at least 10 characters).</span>
@@ -66,7 +65,7 @@
         <div id="contact-feedback" class="form-feedback"
           role="alert" aria-live="polite"></div>
       </form>
-    </section>
+    </div>
   </main>
 
   <!-- FOOTER -->
