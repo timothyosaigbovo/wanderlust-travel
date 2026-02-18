@@ -1,4 +1,5 @@
-/* ══════════════════════════════════════════════
+/* jshint esversion: 8, browser: true */
+/* global emailjs */
    contact.js - Contact Form Handler
    Wanderlust Travel - Holiday Destination Finder
    
