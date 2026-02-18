@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Wanderlust Travel for holiday
+    recommendations and travel packages.">
+  <title>Contact Us | Wanderlust Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800
+    &family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo" aria-label="Wanderlust Travel home">
+          <span class="logo-icon">&#x2708;</span><span>Wanderlust</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn"
+          aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main id="main-content">
+    <section class="page-header">
+      <h1>Get In Touch</h1>
+      <p>Have questions about a destination or want a personalised travel package?</p>
+    </section>
+    <section class="contact-section">
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="form-group">
+          <label for="contact-name">Full Name *</label>
+          <input type="text" id="contact-name" name="name" required
+            aria-required="true" placeholder="Your full name">
+          <span class="field-error" id="name-error">
+            Please enter your name (at least 2 characters).</span>
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email Address *</label>
+          <input type="email" id="contact-email" name="email" required
+            aria-required="true" placeholder="your@email.com">
+          <span class="field-error" id="email-error">
+            Please enter a valid email address.</span>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Your Message *</label>
+          <textarea id="contact-message" name="message" required
+            aria-required="true"
+            placeholder="Tell us about your dream holiday..."></textarea>
+          <span class="field-error" id="message-error">
+            Please enter a message (at least 10 characters).</span>
+        </div>
+        <button type="submit" class="submit-btn" id="contact-submit">
+          Send Message &#x2192;</button>
+        <div id="contact-feedback" class="form-feedback"
+          role="alert" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://github.com/timothyosaigbovo/wanderlust-travel"
+          target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Wanderlust Travel.</p>
+    </div>
+  </footer>
+  <button class="back-top" id="back-top-btn" aria-label="Back to top">&#x2191;</button>
+  <!-- EmailJS SDK - for sending emails from the form -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/contact.js"></script>
+</body>
+</html>
