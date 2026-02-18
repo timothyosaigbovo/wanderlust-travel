@@ -1,3 +1,5 @@
+/* jshint esversion: 8, browser: true */
+/* global L, AbortController */
 /* ══════════════════════════════════════════════
    script.js - Main Application Logic
    Wanderlust Travel - Holiday Destination Finder
@@ -14,7 +16,6 @@
    compound statements, input validation, async/await,
    error handling, API integration, asynchronicity
    ══════════════════════════════════════════════ */
-
 /* ──────────────────────────────────────────────
    GLOBAL VARIABLES
    ────────────────────────────────────────────── */
