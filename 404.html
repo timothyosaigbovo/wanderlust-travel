@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found | Wanderlust Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800
-    &family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER & NAVIGATION -->
   <header>
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="navbar-inner">
@@ -25,6 +26,8 @@
       </div>
     </nav>
   </header>
+
+  <!-- MAIN CONTENT -->
   <main id="main-content">
     <section class="error-page">
       <div class="error-content">
@@ -38,14 +41,21 @@
       </div>
     </section>
   </main>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <p class="footer-copy">&copy; 2026 Wanderlust Travel.</p>
     </div>
   </footer>
-  <!-- Auto-redirect countdown -->
+
+  <!-- Auto-redirect countdown script -->
   <script>
-    /* 404 page auto-redirect - counts down then sends user home */
+    /**
+     * 404 page auto-redirect
+     * Counts down from 10 seconds then redirects to homepage
+     * Demonstrates: setInterval, DOM manipulation, compound statements
+     */
     let seconds = 10;
     const countdownEl = document.getElementById("countdown");
     const timer = setInterval(function() {
