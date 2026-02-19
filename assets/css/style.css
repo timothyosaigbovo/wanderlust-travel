@@ -940,3 +940,8 @@ footer {
     font-size: 5rem;
   }
 }
+/* Loading state for submit button during email send */
+.submit-btn[aria-busy="true"] {
+    background: var(--clr-text-muted);
+    pointer-events: none;
+}
