@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- EmailJS SDK for sending emails from the contact form -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -40,28 +42,43 @@
     <div class="contact-section">
       <form id="contact-form" class="contact-form" novalidate>
         <div class="form-group">
-          <label for="contact-name">Full Name *</label>
-          <input type="text" id="contact-name" name="name" required
+          <label for="name">Full Name *</label>
+          <input
+            type="text"
+            id="name"
+            name="from_name"
+            required
             placeholder="Your full name">
           <span class="field-error" id="name-error">
             Please enter your name (at least 2 characters).</span>
         </div>
+
         <div class="form-group">
-          <label for="contact-email">Email Address *</label>
-          <input type="email" id="contact-email" name="email" required
+          <label for="email">Email Address *</label>
+          <input
+            type="email"
+            id="email"
+            name="from_email"
+            required
             placeholder="your@email.com">
           <span class="field-error" id="email-error">
             Please enter a valid email address.</span>
         </div>
+
         <div class="form-group">
-          <label for="contact-message">Your Message *</label>
-          <textarea id="contact-message" name="message" required
+          <label for="message">Your Message *</label>
+          <textarea
+            id="message"
+            name="message"
+            required
             placeholder="Tell us about your dream holiday..."></textarea>
           <span class="field-error" id="message-error">
             Please enter a message (at least 10 characters).</span>
         </div>
+
         <button type="submit" class="submit-btn" id="contact-submit">
           Send Message &#x2192;</button>
+
         <div id="contact-feedback" class="form-feedback"
           role="alert" aria-live="polite"></div>
       </form>
@@ -84,8 +101,6 @@
 
   <button class="back-top" id="back-top-btn" aria-label="Back to top">&#x2191;</button>
 
-  <!-- EmailJS SDK for sending emails from the form -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="assets/js/script.js"></script>
   <script src="assets/js/contact.js"></script>
 </body>
