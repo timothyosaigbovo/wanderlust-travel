@@ -1,253 +1,204 @@
-/* jshint esversion: 8, browser: true */
-/* global emailjs */
-   contact.js - Contact Form Handler
-   Wanderlust Travel - Holiday Destination Finder
-   
-   This file handles:
-   - Contact form validation (name, email, message)
-   - Form submission with EmailJS
-   - User feedback messages
-   - Field-level error display and clearing
-   
-   Demonstrates: input validation (presence, format,
-   range checks), event listeners, DOM manipulation,
-   compound statements, error handling
-   ══════════════════════════════════════════════ */
+/**
+ * Contact Form - EmailJS Integration
+ * Handles form validation and sends emails via EmailJS service
+ * 
+ * SETUP: The EmailJS SDK must be loaded in contact.html BEFORE this script:
+ * <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+ */
 
-/* ──────────────────────────────────────────────
-   EMAILJS INITIALISATION
-   Replace the public key below with your own from
-   emailjs.com > Account > Public Key
-   ────────────────────────────────────────────── */
+// Initialise EmailJS with public key
+emailjs.init("57Rl-B5dwSLLzFLTb");
 
-// Uncomment the line below and add your EmailJS public key when ready
-// emailjs.init("YOUR_PUBLIC_KEY_HERE");
+// Wait for DOM to load before attaching listeners
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contact-form");
 
-/* ──────────────────────────────────────────────
-   FORM VALIDATION FUNCTIONS
-   Each function validates one field and returns
-   true (valid) or false (invalid)
-   Demonstrates: compound statements, presence check,
-   length check, format check (criterion 2.3)
-   ────────────────────────────────────────────── */
+    if (contactForm) {
+        contactForm.addEventListener("submit", handleFormSubmit);
+    }
+
+    // Clear inline errors when user starts typing
+    const inputs = document.querySelectorAll("#contact-form input, #contact-form textarea");
+    inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+            clearFieldError(this);
+        });
+    });
+});
 
 /**
- * Validates the name field
- * Checks: not empty, at least 2 characters
- * @param {string} value - The name input value
- * @returns {boolean} - True if valid
+ * Main form submission handler
+ * Validates all fields, then sends email via EmailJS
+ * @param {Event} event - The form submit event
  */
-function validateName(value) {
-  if (!value || value.trim() === "") {
-    return false;
-  }
-  if (value.trim().length < 2) {
-    return false;
-  }
-  return true;
-}
-
-/**
- * Validates the email field
- * Checks: not empty, matches email format
- * @param {string} value - The email input value
- * @returns {boolean} - True if valid
- */
-function validateEmail(value) {
-  if (!value || value.trim() === "") {
-    return false;
-  }
-  // Email format check using regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(value.trim())) {
-    return false;
-  }
-  return true;
-}
-
-/**
- * Validates the message field
- * Checks: not empty, at least 10 characters
- * @param {string} value - The message textarea value
- * @returns {boolean} - True if valid
- */
-function validateMessage(value) {
-  if (!value || value.trim() === "") {
-    return false;
-  }
-  if (value.trim().length < 10) {
-    return false;
-  }
-  return true;
-}
-
-/* ──────────────────────────────────────────────
-   SHOW/HIDE FIELD ERRORS
-   Shows or hides the error message under each field
-   and adds/removes the red border styling
-   ────────────────────────────────────────────── */
-
-/**
- * Shows an error on a specific form field
- * @param {HTMLElement} inputEl - The input/textarea element
- * @param {string} errorId - The ID of the error span
- */
-function showFieldError(inputEl, errorId) {
-  inputEl.classList.add("invalid");
-  const errorEl = document.getElementById(errorId);
-  if (errorEl) {
-    errorEl.classList.add("visible");
-  }
-}
-
-/**
- * Hides the error on a specific form field
- * @param {HTMLElement} inputEl - The input/textarea element
- * @param {string} errorId - The ID of the error span
- */
-function hideFieldError(inputEl, errorId) {
-  inputEl.classList.remove("invalid");
-  const errorEl = document.getElementById(errorId);
-  if (errorEl) {
-    errorEl.classList.remove("visible");
-  }
-}
-
-/* ──────────────────────────────────────────────
-   CONTACT FORM SUBMISSION
-   Validates all fields, then sends via EmailJS
-   Demonstrates: event listener, compound statements
-   (multiple if checks), DOM manipulation,
-   loading states, user feedback
-   ────────────────────────────────────────────── */
-const contactForm = document.getElementById("contact-form");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", function (event) {
+function handleFormSubmit(event) {
     event.preventDefault();
 
-    // Get form field elements
-    const nameInput = document.getElementById("contact-name");
-    const emailInput = document.getElementById("contact-email");
-    const messageInput = document.getElementById("contact-message");
-    const submitBtn = document.getElementById("contact-submit");
-    const feedbackDiv = document.getElementById("contact-feedback");
+    // Get form field values
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const messageField = document.getElementById("message");
+    const submitBtn = document.querySelector("#contact-form button[type='submit']");
 
-    let isFormValid = true;
+    const nameValue = nameField.value.trim();
+    const emailValue = emailField.value.trim();
+    const messageValue = messageField.value.trim();
 
-    // ── Validate Name ──
-    if (!validateName(nameInput.value)) {
-      showFieldError(nameInput, "name-error");
-      isFormValid = false;
-    } else {
-      hideFieldError(nameInput, "name-error");
+    // Clear previous errors
+    clearAllErrors();
+
+    // Validate all fields
+    let isValid = true;
+
+    if (nameValue.length < 2) {
+        showFieldError(nameField, "Please enter your name (at least 2 characters).");
+        isValid = false;
     }
 
-    // ── Validate Email ──
-    if (!validateEmail(emailInput.value)) {
-      showFieldError(emailInput, "email-error");
-      isFormValid = false;
-    } else {
-      hideFieldError(emailInput, "email-error");
+    if (!isValidEmail(emailValue)) {
+        showFieldError(emailField, "Please enter a valid email address.");
+        isValid = false;
     }
 
-    // ── Validate Message ──
-    if (!validateMessage(messageInput.value)) {
-      showFieldError(messageInput, "message-error");
-      isFormValid = false;
-    } else {
-      hideFieldError(messageInput, "message-error");
+    if (messageValue.length < 10) {
+        showFieldError(messageField, "Please enter a message (at least 10 characters).");
+        isValid = false;
     }
 
-    // Stop if any field is invalid
-    if (!isFormValid) {
-      return;
+    if (!isValid) {
+        return;
     }
 
-    // ── Show loading state ──
+    // Show loading state
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
+    submitBtn.setAttribute("aria-busy", "true");
 
-    // ── Send email using EmailJS ──
-    // NOTE: To enable real email sending:
-    // 1. Sign up at emailjs.com
-    // 2. Uncomment emailjs.init() at the top of this file
-    // 3. Replace the service ID, template ID below
-    // 4. Uncomment the emailjs.send() block below
-    // 5. Remove the setTimeout simulation block
-
-    /*
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-      from_name: nameInput.value.trim(),
-      from_email: emailInput.value.trim(),
-      message: messageInput.value.trim()
-    }).then(
-      function(response) {
-        // SUCCESS
-        feedbackDiv.className = "form-feedback success";
-        feedbackDiv.textContent = "Thank you! Your message has been sent. We'll get back to you within 24 hours.";
-        contactForm.reset();
+    // Send email via EmailJS
+    emailjs.send(
+        "service_glmo4mi",
+        "template_j1pj3lw",
+        {
+            from_name: nameValue,
+            from_email: emailValue,
+            message: messageValue
+        }
+    ).then(
+        function (response) {
+            // Success
+            console.log("Email sent successfully!", response.status, response.text);
+            showFormFeedback(
+                "Thank you! Your message has been sent successfully. We will be in touch soon.",
+                "success"
+            );
+            document.getElementById("contact-form").reset();
+            clearAllErrors();
+        },
+        function (error) {
+            // Error
+            console.error("Failed to send email:", error);
+            showFormFeedback(
+                "Sorry, something went wrong. Please try again later.",
+                "error"
+            );
+        }
+    ).finally(function () {
+        // Reset button state
         submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message \u2192";
-      },
-      function(error) {
-        // FAILURE
-        feedbackDiv.className = "form-feedback error";
-        feedbackDiv.textContent = "Sorry, something went wrong. Please try again or email us directly.";
-        console.error("EmailJS Error:", error);
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message \u2192";
-      }
-    );
-    */
-
-    // ── Simulated sending (remove this when EmailJS is set up) ──
-    setTimeout(function () {
-      feedbackDiv.className = "form-feedback success";
-      feedbackDiv.textContent =
-        "Thank you! Your message has been sent. We'll get back to you within 24 hours.";
-
-      // Reset the form
-      contactForm.reset();
-
-      // Clear any remaining error styles
-      hideFieldError(nameInput, "name-error");
-      hideFieldError(emailInput, "email-error");
-      hideFieldError(messageInput, "message-error");
-
-      // Re-enable the button
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message \u2192";
-
-      // Auto-hide success message after 8 seconds
-      setTimeout(function () {
-        feedbackDiv.className = "form-feedback";
-        feedbackDiv.textContent = "";
-      }, 8000);
-    }, 1500);
-  });
+        submitBtn.textContent = "Send Message";
+        submitBtn.removeAttribute("aria-busy");
+    });
 }
 
-/* ──────────────────────────────────────────────
-   CLEAR ERRORS ON INPUT
-   When the user starts typing in a field, the
-   error message for that field disappears
-   Demonstrates: forEach loop, event listeners,
-   DOM manipulation for better user experience
-   ────────────────────────────────────────────── */
-const formFields = [
-  { inputId: "contact-name", errorId: "name-error" },
-  { inputId: "contact-email", errorId: "email-error" },
-  { inputId: "contact-message", errorId: "message-error" }
-];
+/**
+ * Validate email format using regex
+ * @param {string} email - The email string to validate
+ * @returns {boolean} True if valid email format
+ */
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-for (let i = 0; i < formFields.length; i++) {
-  const field = formFields[i];
-  const inputEl = document.getElementById(field.inputId);
+/**
+ * Show an inline error message under a form field
+ * @param {HTMLElement} field - The input/textarea element
+ * @param {string} message - The error message to display
+ */
+function showFieldError(field, message) {
+    // Remove existing error for this field if any
+    clearFieldError(field);
 
-  if (inputEl) {
-    inputEl.addEventListener("input", function () {
-      hideFieldError(this, field.errorId);
+    // Create error element
+    const errorEl = document.createElement("p");
+    errorEl.classList.add("field-error");
+    errorEl.setAttribute("role", "alert");
+    errorEl.textContent = message;
+
+    // Add error class to the field for styling
+    field.classList.add("input-error");
+
+    // Insert error message after the field
+    field.parentNode.insertBefore(errorEl, field.nextSibling);
+}
+
+/**
+ * Clear error message for a specific field
+ * @param {HTMLElement} field - The input/textarea element
+ */
+function clearFieldError(field) {
+    field.classList.remove("input-error");
+    const existingError = field.parentNode.querySelector(".field-error");
+    if (existingError) {
+        existingError.remove();
+    }
+}
+
+/**
+ * Clear all error messages on the form
+ */
+function clearAllErrors() {
+    const errors = document.querySelectorAll(".field-error");
+    errors.forEach(function (el) {
+        el.remove();
     });
-  }
+    const errorFields = document.querySelectorAll(".input-error");
+    errorFields.forEach(function (el) {
+        el.classList.remove("input-error");
+    });
+}
+
+/**
+ * Display a feedback message above or below the form
+ * @param {string} message - The feedback text
+ * @param {string} type - "success" or "error"
+ */
+function showFormFeedback(message, type) {
+    // Remove any existing feedback
+    const existingFeedback = document.getElementById("form-feedback");
+    if (existingFeedback) {
+        existingFeedback.remove();
+    }
+
+    // Create feedback element
+    const feedbackEl = document.createElement("div");
+    feedbackEl.id = "form-feedback";
+    feedbackEl.className = "feedback-message feedback-" + type;
+    feedbackEl.setAttribute("role", "alert");
+    feedbackEl.setAttribute("aria-live", "polite");
+    feedbackEl.textContent = message;
+
+    // Insert after the form
+    const form = document.getElementById("contact-form");
+    form.parentNode.insertBefore(feedbackEl, form.nextSibling);
+
+    // Auto-hide success messages after 6 seconds
+    if (type === "success") {
+        setTimeout(function () {
+            feedbackEl.style.opacity = "0";
+            setTimeout(function () {
+                feedbackEl.remove();
+            }, 300);
+        }, 6000);
+    }
 }
