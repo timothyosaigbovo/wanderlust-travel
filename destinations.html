@@ -48,6 +48,30 @@
       <div id="dest-spinner" class="spinner" role="status"></div>
     </div>
 
+    <!-- Region Filter Buttons -->
+    <section class="filter-section" aria-label="Filter by region">
+      <h2 class="filter-heading">Browse by Region</h2>
+      <div class="filter-buttons" role="group" aria-label="Region filters">
+        <button class="filter-btn active" data-region="all" aria-pressed="true">All Regions</button>
+        <button class="filter-btn" data-region="Africa" aria-pressed="false">Africa</button>
+        <button class="filter-btn" data-region="Americas" aria-pressed="false">Americas</button>
+        <button class="filter-btn" data-region="Asia" aria-pressed="false">Asia</button>
+        <button class="filter-btn" data-region="Europe" aria-pressed="false">Europe</button>
+        <button class="filter-btn" data-region="Oceania" aria-pressed="false">Oceania</button>
+      </div>
+    </section>
+
+    <!-- Sort Controls -->
+    <div class="sort-controls">
+      <label for="sort-select">Sort by:</label>
+      <select id="sort-select" aria-label="Sort search results">
+        <option value="name-asc">Name (A – Z)</option>
+        <option value="name-desc">Name (Z – A)</option>
+        <option value="pop-desc">Population (Highest first)</option>
+        <option value="pop-asc">Population (Lowest first)</option>
+      </select>
+    </div>
+
     <div class="dest-results-section">
       <div id="dest-map-container" class="map-container">
         <div id="dest-map"></div>
@@ -75,5 +99,6 @@
   <!-- JavaScript at bottom of body -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="assets/js/script.js"></script>
+  <script src="assets/js/features.js"></script>
 </body>
 </html>
