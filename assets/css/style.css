@@ -945,3 +945,180 @@ footer {
     background: var(--clr-text-muted);
     pointer-events: none;
 }
+/* ══════════════════════════════════════════════
+   REGION FILTER BUTTONS
+   ══════════════════════════════════════════════ */
+.filter-section {
+  text-align: center;
+  padding: 2rem 24px;
+}
+
+.filter-heading {
+  font-family: var(--font-heading);
+  color: var(--clr-primary);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--clr-primary);
+  border-radius: 25px;
+  background-color: transparent;
+  color: var(--clr-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filter-btn:hover {
+  background-color: var(--clr-primary-light);
+  color: #fff;
+  border-color: var(--clr-primary-light);
+}
+
+.filter-btn:focus {
+  outline: 3px solid var(--clr-primary-light);
+  outline-offset: 2px;
+}
+
+.filter-btn.active {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   SORT CONTROLS
+   ══════════════════════════════════════════════ */
+.sort-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sort-controls label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--clr-primary);
+  font-size: 0.9rem;
+}
+
+.sort-controls select {
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--clr-primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--clr-text);
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.sort-controls select:focus {
+  outline: 3px solid var(--clr-primary-light);
+  outline-offset: 2px;
+  border-color: var(--clr-primary-light);
+}
+
+/* ══════════════════════════════════════════════
+   FAVOURITES HEART BUTTON
+   ══════════════════════════════════════════════ */
+.dest-card {
+  position: relative;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  color: #999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  line-height: 1;
+}
+
+.fav-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.fav-btn:focus {
+  outline: 3px solid var(--clr-primary-light);
+  outline-offset: 2px;
+}
+
+.fav-btn.favourited {
+  color: #e74c3c;
+}
+
+/* ══════════════════════════════════════════════
+   LOADING STATE FOR SUBMIT BUTTON
+   ══════════════════════════════════════════════ */
+.submit-btn[aria-busy="true"] {
+  background: var(--clr-text-muted);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════
+   SCREEN READER ONLY UTILITY
+   ══════════════════════════════════════════════ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE - FILTER & SORT (Mobile)
+   ══════════════════════════════════════════════ */
+@media (max-width: 576px) {
+  .filter-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .sort-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .fav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+}
