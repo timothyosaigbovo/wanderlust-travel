@@ -405,6 +405,12 @@ function createCountryCard(country) {
     });
   }
 
+  // Add favourite heart button (defined in features.js)
+  if (typeof createFavButton === "function") {
+    const favBtn = createFavButton(name);
+    card.appendChild(favBtn);
+  }
+
   return card;
 }
 
@@ -447,6 +453,16 @@ function flyToCountry(lat, lng) {
  * @param {Array} markerArray - Array to store markers for later cleanup
  */
 function displayResults(countries, gridId, mapInstance, markerArray) {
+  // Store results and context for sorting (used by features.js)
+  if (typeof currentDisplayedResults !== "undefined") {
+    currentDisplayedResults = countries;
+  }
+  if (typeof currentDisplayContext !== "undefined") {
+    currentDisplayContext.gridId = gridId;
+    currentDisplayContext.mapInstance = mapInstance;
+    currentDisplayContext.markerArray = markerArray;
+  }
+
   const grid = document.getElementById(gridId);
   if (!grid) {
     return;
