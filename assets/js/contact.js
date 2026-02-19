@@ -6,7 +6,7 @@
  * <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
  */
 
-// Initialise EmailJS with public key
+// Initialise EmailJS with your public key (required before calling emailjs.send)
 emailjs.init("57Rl-B5dwSLLzFLTb");
 
 // Wait for DOM to load before attaching listeners
