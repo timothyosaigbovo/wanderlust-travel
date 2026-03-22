@@ -98,17 +98,7 @@ Wireframes were created for mobile, tablet, and desktop layouts to plan the stru
 | Destinations | ![dest mobile](docs/wireframes/dest-mobile.png) | ![dest tablet](docs/wireframes/dest-tablet.png) | ![dest desktop](docs/wireframes/dest-desktop.png) |
 | Contact | ![contact mobile](docs/wireframes/contact-mobile.png) | ![contact tablet](docs/wireframes/contact-tablet.png) | ![contact desktop](docs/wireframes/contact-desktop.png) |
 
-### Wireframes
-
-Wireframes were created for ...
-
-| Page | Mobile | Tablet | Desktop |
-...
-
 ### Design Choices
-
-The colour scheme was checked for WCAG AA contrast compliance to ensure readability for all users.
-
 
 #### Colour Scheme
 
